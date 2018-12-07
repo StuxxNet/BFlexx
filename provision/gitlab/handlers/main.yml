@@ -1,0 +1,10 @@
+---
+# handlers file for gitlab
+- name: start ssh
+  service:
+    name: sshd
+    state: started
+- name: start postfix
+  service:
+    name: postfix
+    state: started

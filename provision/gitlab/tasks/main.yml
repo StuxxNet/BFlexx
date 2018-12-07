@@ -1,0 +1,35 @@
+---
+# tasks file for docker
+- name: Guarantee dependencies
+  yum:
+    name:
+    - curl
+    - policycoreutils-python
+    - openssh-server
+    - postfix
+    update_cache: yes
+    state: present
+  notify:
+  - start ssh
+  - start postfix
+
+- name: Downloading Gitlab repo
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh
+    dest: /tmp
+    mode: 755
+
+- name: Installing repositories
+  script: /tmp/script.rpm.sh
+  args:
+    chdir: /tmp
+    removes: script.rpm.sh
+
+- name: Install GitLab
+  environment:
+    EXTERNAL_URL: http://gitlab.vagrant.com
+  yum:
+    name:
+    - gitlab-ee
+    update_cache: yes
+...
