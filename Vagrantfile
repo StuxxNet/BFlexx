@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.define :mssql do |mssql_config|
-        mssql_config.vm.box = ""
+        mssql_config.vm.box = "msabramo/mssqlserver2014express"
         mssql_config.vm.network "private_network", ip: "192.168.1.40"
         mssql_config.vm.provider "virtualbox" do |mssql_config_provider|
             mssql_config_provider.memory = 1024
