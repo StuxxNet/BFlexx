@@ -24,6 +24,7 @@
     script: /tmp/script.rpm.sh
     args:
       chdir: /tmp
+      removes: script.rpm.sh
 
   - name: Install GitLab
     environment:
