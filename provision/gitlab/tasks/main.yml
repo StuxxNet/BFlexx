@@ -1,5 +1,5 @@
 ---
-# tasks file for docker
+# tasks file for gitlab
 - name: Guarantee dependencies
   yum:
     name:
@@ -32,4 +32,4 @@
     name:
     - gitlab-ee
     update_cache: yes
-...
+    
