@@ -1,0 +1,18 @@
+---
+# tasks file for Docker
+- name: Installing Docker dependencies
+  yum:
+    name: {{ packages }}
+    state: present
+  vars:
+    packages:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+
+- name: Enabling Docker repo and installing last version
+  yum:
+    name: docker-ce
+    enablerepo: https://download.docker.com/linux/centos/docker-ce.repo
+  notify:
+    - start docker
