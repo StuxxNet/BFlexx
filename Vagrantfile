@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-    config.vm.box = "centos/7"
+    config.vm.box = "puppetlabs/centos-7.2-64-puppet"
 
     config.vm.define :gitlab do |gitlab_config|
         gitlab_config.vm.network "private_network", ip: "192.168.1.10"
@@ -35,6 +35,10 @@ Vagrant.configure("2") do |config|
         automation_config.vm.network "private_network", ip: "192.168.1.50"
         automation_config.vm.provider "virtualbox" do |automation_config_provider|
             automation_config_provider.memory = 1024
+        end
+        automation_config.vm.provision "puppet" do |automation_uppet|
+            automation_uppet.manifests_path = "manifests"
+            automation_uppet.manifest_file = "automation.pp"
         end
     end
 
