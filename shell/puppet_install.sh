@@ -1,4 +1,6 @@
 #!/bin/bash
-apt-get update && apt-get -y install puppet && puppet module install puppetlabs-apache
-
+CHECK_APP=$(dpkg -l puppet)
+if [[ $? -gt 0 ]]; then
+    apt-get update && apt-get -y install puppet
+fi
 echo "Puppet installed!"
